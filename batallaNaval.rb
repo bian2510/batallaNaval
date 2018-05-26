@@ -3,6 +3,8 @@ class BatallaNaval
 	@@mejoresDisparos = Array.new
 	def initialize
 
+		def inicio
+		
 		@turno = 0
 		@numeros = 	["°","1","2","3","4"]
 		@a = 		["a","0","0","0","0"]
@@ -14,7 +16,14 @@ class BatallaNaval
 		@disparosRealizados = Array.new
 		@barcosUbicacion = Array.new
 
-		#COMIENZA LA UBICACION DE LOS BARCOS
+		posicionBarcos()
+		tableroJuego()
+		ronda()
+		reiniciar()
+		end
+		
+
+		#DA COORDENADA EN LETRA Y NUMERO DE LOS BARCOS
 		def coordenadaBarcos
 			@posicionNumero = rand(1..4)
 			@posicionLetra = rand(5..8)
@@ -33,6 +42,7 @@ class BatallaNaval
 			@barco = "#{@posicionLetra}#{@posicionNumero}"
 		end
 
+		#POSICIONA LOS BARCOS
 		def posicionBarcos
 			
 		@barco1 = coordenadaBarcos
@@ -82,10 +92,11 @@ class BatallaNaval
 					cambioTablero("X")
 					@golpeado.push(@barco1)
 					puts "Destruirte un barco\n"
-				elsif @disparo == @barco2
+					 @barco2
 					cambioTablero("X")
 					@golpeado.push(@barco2)
 					puts "Destruirte un barco\n"
+
 					else
 					@disparo =! @barco1 && @barco2
 					cambioTablero("*")
@@ -110,8 +121,7 @@ class BatallaNaval
 
 						elsif @cordenadaLetra == "d" || @cordenadaLetra == "D"
 
-							@d[@cordenadaNumero] = marca			 	 
-
+							@d[@cordenadaNumero] = marca
 				end
 			
 		end
@@ -134,6 +144,7 @@ class BatallaNaval
 				puts "Ingrese una cordenada en numero del \"1\" al \"4\" para su ataque"
 
 				@cordenadaNumero = gets.chomp.to_i
+
 
 			end	
 			
@@ -170,12 +181,7 @@ class BatallaNaval
 			end
 			if @opcion == 1
 				@turno = 0
-				initialize
-				tableroJuego
-				coordenadaBarcos
-				posicionBarcos
-				ronda
-				reiniciar
+				inicio
 			elsif @opcion == 2
 				puts "Adios"
 
@@ -224,8 +230,4 @@ class BatallaNaval
 	
 end
 objeto = BatallaNaval.new
-objeto.tableroJuego
-objeto.coordenadaBarcos
-objeto.posicionBarcos
-objeto.ronda
-objeto.reiniciar
+objeto.inicio
